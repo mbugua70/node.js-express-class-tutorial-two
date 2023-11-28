@@ -46,6 +46,52 @@ app.post("/login", (req, res) => {
   }
 });
 
+// put method
+
+app.put("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  // console.log(id, name)
+  // res.send("john doe")
+  const person = people.find((person) => person.id === Number(id));
+  // console.log(person)
+
+  if (!person) {
+    res
+      .status(404)
+      .json({
+        success: false,
+        msg: `The user with the id of ${id} can't be found`,
+      });
+  }
+  const newPerson = people.map((person) => {
+    if (person.id === Number(id)) {
+      person.name = name;
+    }
+    return person;
+  });
+
+  res.status(200).json({ success: true, data: newPerson });
+});
+
+app.delete("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const person = people.find((person) => person.id === Number(id));
+
+  if (!person) {
+    res
+      .status(404)
+      .json({
+        success: false,
+        msg: `We can't find the user with the id of ${id}`,
+      });
+  }
+
+  const newPeople = people.filter((person) => person.id !== Number(id));
+  console.log(newPeople);
+  res.status(200).json({ success: true, data: newPeople });
+});
 const PORT = 5000;
 
 app.listen(5000, () => {

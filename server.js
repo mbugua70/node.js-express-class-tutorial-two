@@ -1,20 +1,28 @@
 const express = require("express");
 
-let { people } = require("./data");
 const app = express();
 
-// setting up static middleware
+// import peoeples page routes
+
+const people = require("./routes/peoples");
+const auth = require("./routes/auth");
 
 app.use(express.static("./methods-public"));
 
-app.get("/api/people", (req, res) => {
-  res.status(200).json({ successful: true, data: people });
-});
 
-// learning about the http method post
+// parse form data / url encoded data
+
+app.use(express.urlencoded({ extends: false }));
+
+app.use(express.json());
+
+
+// routes
+app.use("/api/people", people);
+app.use("/login", auth)
 
 const PORT = 5000;
 
-app.listen(5000, () => {
-  console.log(`Listening to port ${PORT}...`);
+app.listen(PORT, () => {
+  console.log(`Listening to port ${PORT}....`);
 });
