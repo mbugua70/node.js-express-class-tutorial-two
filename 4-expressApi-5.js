@@ -38,14 +38,15 @@ app.get("/api/products/:paramId/reviews/:reviewsId", (req, res) => {
 
 // QUERY
 
-app.get("/api/vi/query", (req, res) => {
+app.get("/api/v1/query", (req, res) => {
   console.log(req.query);
-  //    res.send("<h1>Hello world</h1>")
+  //    res.send("<h1 >Hello world</h1>")
   console.log("Hello world");
   const { search, limit } = req.query;
   let sortedProducts = [...products];
   if (search) {
     sortedProducts = sortedProducts.filter((product) => {
+      // this one will return true
       return product.name.startsWith(search);
     });
   }
@@ -60,7 +61,7 @@ app.get("/api/vi/query", (req, res) => {
     return res.status(200).json({ success: true, data: [] });
   }
   res.status(200).json(sortedProducts);
-  res.send("hello world");
+  // res.send("hello world");
 });
 
 const PORT = 5000;

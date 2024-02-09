@@ -26,7 +26,7 @@ const setMiddleware = require("./setMiddleware");
 // we can also pass another parameter to the method below e.g the path
 // passing the api path below will apply to both the product and item
 app.use("/api", setMiddleware);
-
+// it will apply to anyroutes after /api
 app.get("/", (req, res) => {
   //   const method = req.method;
   //   const url = req.url;

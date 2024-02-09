@@ -20,10 +20,10 @@ const setMiddleware = require("./setMiddleware");
 // consuming the middleware we will pass it as an arguement below
 
 app.get("/", setMiddleware, (req, res) => {
-  //   const method = req.method;
-  //   const url = req.url;
-  //   const time = new Date().getDay();
-  //   console.log(method, url, time);
+  // const method = req.method;
+  // const url = req.url;
+  // const time = new Date().getDay();
+  // console.log(method, url, time);
   res.send("<h1>Home Page</h1>");
 });
 

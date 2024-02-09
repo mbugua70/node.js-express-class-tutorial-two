@@ -49,7 +49,7 @@ app.get("/api/products", [authorize, setMiddleware], (req, res) => {
   res.send("<h1>Products</h1>");
 });
 
-app.get("/api/item", (req, res) => {
+app.get("/api/item", [authorize, setMiddleware], (req, res) => {
   res.send("<h1>Item</h1>");
 });
 

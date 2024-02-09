@@ -17,15 +17,17 @@ app.get('/api/products', (req,res) =>{
 })
 
 app.get('/api/products/:paramId', (req,res) =>{
-    // console.log(req)
-    // console.log(req.params)
-    const {paramId} = req.params
-    // we have Number which can be used to convert the string to number
-    const singleProducts = products.find((product) => product.id === Number(paramId))
-    if(!singleProducts){
-        return res.status(404).send("<h1>Page not found</h1>");
-    }
-    res.json(singleProducts)
+  // console.log(req)
+  // console.log(req.params);
+  const { paramId } = req.params;
+  // we have Number method which can be used to convert the string to number
+  const singleProducts = products.find(
+    (product) => product.id === Number(paramId)
+  );
+  if (!singleProducts) {
+    return res.status(404).send("<h1>Page not found</h1>");
+  }
+  res.json(singleProducts);
 })
 
 app.get('/api/products/:paramId/reviews/:reviewsId', (req,res) =>{
