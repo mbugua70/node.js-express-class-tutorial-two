@@ -15,6 +15,20 @@ app.get("/api/people", (req, res) => {
   res.status(200).json({ successful: true, data: people });
 });
 
+app.get("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+  const person = people.find((person) => person.id === Number(id));
+  if (!person) {
+    res
+      .status(404)
+      .json({ success: false, msg: `We can't find the user of id: ${id}` });
+  }
+
+  const newPerson = people.filter((person) => person.id === Number(id));
+
+  res.status(201).json({ success: true, data: newPerson });
+});
+
 // learning about the http method post
 
 // parse data
@@ -46,6 +60,16 @@ app.post("/login", (req, res) => {
   }
 });
 
+//  test using the postman api
+app.post("/api/postman/people", (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    res.status(400).json({ success: false, msg: "Please provide the name" });
+  } else {
+    res.status(201).json({ success: true, data: [...people, name] });
+  }
+});
 // put method
 
 app.put("/api/people/:id", (req, res) => {

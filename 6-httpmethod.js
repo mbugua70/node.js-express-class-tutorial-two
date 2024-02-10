@@ -24,7 +24,7 @@ app.use(express.json());
 app.post("/api/people", (req, res) => {
   // we use the status of 201 it sending data request was successful
   // res.status(201).send("john doe")
-
+  console.log(req.body);
   const { name } = req.body;
 
   if (!name) {
